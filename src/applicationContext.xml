@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	 http://www.springframework.org/schema/context  
+     http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:component-scan base-package="com.zy.*"/>
+<!--数据源  --> 
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="url"
+			value="jdbc:oracle:thin:@127.0.0.1:1521:abcd">
+		</property>
+		<property name="username" value="admin"></property>
+		<property name="password" value="admin"></property>
+	</bean>
+	<!-- 验证码 -->
+	<bean id="randAction" class="com.zy.action.RandomAction"></bean>
+	
+	<!-- dao持久层 -->
+	<!--<bean id="userDao" class="com.zy.dao.impl.UserDaoImpl"/>
+	-->
+	<bean id="vacationDao" class="com.zy.dao.impl.VacationDaoImpl"/>
+	
+	<!--<bean id="emailDao" class="com.zy.dao.impl.EmailDaoImpl"/>
+	
+	-->
+	<!-- 业务逻辑层 -->
+	<!--<bean id="userService" class="com.zy.service.impl.UserServiceImpl">
+		<property name="dao">
+			<ref local="userDao"/>
+		</property>
+	</bean>
+	-->
+	<bean id="vacationService" class="com.zy.service.impl.VacationServiceImpl">
+		<property name="dao">
+			<ref local="vacationDao"/>
+		</property>
+	</bean>
+	<!--<bean id="emailService" class="com.zy.service.impl.EmailServiceImpl">
+		<property name="dao">
+			<ref local="emailDao"/>
+		</property>
+	</bean>
+	
+	--><!-- Action控制层 -->
+	<!--<bean id="UserAction" class="com.zy.action.UserAction" scope="prototype" >
+	</bean>
+	
+	-->
+	<bean id="VacationAction" class="com.zy.action.VacationAction" scope="prototype">
+		<property name="vacationService">
+			<ref local="vacationService"/>
+		</property>
+	</bean>
+	<bean id="EmailAction" class="com.zy.action.EmailAction" scope="prototype">
+	</bean><!--
+	
+	
+		
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		-->
+	<!-- 使用注解方式 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		  <property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				
+				<!--
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>
+				-->
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<!--<property name="mappingResources">
+			<list>
+				<value>com/zy/entity/OaUser.hbm.xml</value>
+				<value>com/zy/entity/Vacation.hbm.xml</value>
+				<value>com/zy/entity/Email.hbm.xml</value>
+			</list>
+		</property>
+		
+	-->
+		<property name="annotatedClasses">
+			<list>
+				<value>com.zy.entity.OaUser</value>
+				<value>com.zy.entity.Email</value>
+				<value>com.zy.entity.Vacation</value>
+			</list>
+		</property>
+	</bean>
+	</beans>

@@ -1,0 +1,433 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>人力资源系统管理平台</title>
+		<link rel="stylesheet" type="text/css"
+			href="ext/resources/css/ext-all.css" />
+		<!-- GC -->
+		<!-- LIBS -->
+		<script type="text/javascript" src="ext/adapter/ext/ext-base.js">
+	
+</script>
+		<!-- ENDLIBS -->
+		<script type="text/javascript" src="ext/ext-all.js">
+	
+</script>
+
+		<script type="text/javascript" src="ext/ext-lang-zh_CN.js">
+	
+</script>
+		<style type="text/css">
+ html,body {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	overflow: hidden;
+	height: 100%;
+} 
+
+.empty .x-panel-body {
+	background-color:#f1f1f1;
+	padding-top: 0;
+	text-align: center;
+	font-style: italic;
+	color: gray;
+	font-size: 11px;
+}
+
+.x-btn button {
+	font-size: 14px;
+}
+
+.x-panel-header {
+	font-size: 14px;
+}
+</style>
+<script type="text/javascript">
+	Ext.onReady( function() {
+		//Ext.Msg.alert('ext','welcome you!');
+		var addPanel = function(btn, event) {
+			var n;
+			n = tabPanel.getComponent(btn.id);
+			if(n) {
+				tabPanel.setActiveTab(n);
+				return;
+			}
+			n = tabPanel.add( {
+				id : btn.id,
+				title : btn.id,
+				html : '<iframe width=100% height=100% src=' + btn.id + ' />',
+				//autoLoad : '',
+				closable : 'true'
+			});
+			tabPanel.setActiveTab(n);
+		}
+
+		var item1 = new Ext.Panel( {
+			title : '客户化管理',
+			//html : '&lt;empty panel&gt;',
+			cls : 'empty',
+			items : [ 
+				new Ext.Button({
+					id : 'tier1-list',
+					text : '一级机构设置',
+					width : '100%',
+					listeners : {
+						click : addPanel
+					}
+
+				}),
+
+				new Ext.Button({
+					id : 'tier2-list',
+					text : '二级机构设置',
+					width : '100%',
+					listeners : {
+						click : addPanel
+					}
+
+				}),
+				
+				new Ext.Button({
+					id : 'tier3-list',
+					text : '三级机构设置',
+					width : '100%',
+					listeners : {
+						click : addPanel
+					}
+
+				}),
+				
+				new Ext.Button({
+					id : 'position-list',
+					text : '职称设置',
+					width : '100%',
+					listeners : {
+						click : addPanel
+					}
+
+				}),
+				
+				new Ext.Button({
+					id : 'posCat-list',
+					text : '职位分类设置',
+					width : '100%',
+					listeners : {
+						click : addPanel
+					}
+
+				}) ,
+				
+				new Ext.Button({
+					id : 'attr-list',
+					text : '公共属性设置',
+					width : '100%',
+					listeners : {
+						click : addPanel
+					}
+				})
+ 
+				]
+		});
+
+		var item2 = new Ext.Panel( {
+			title : '人力资源档案管理',
+			//html : '&lt;empty panel&gt;',
+			cls : 'empty',
+			items : [ 
+						new Ext.Button({
+							id : 'hr-addInput',
+							text : '人力资源档案登记',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						}),
+
+						new Ext.Button({
+							id : 'test1',
+							text : '人力资源档案登记复核',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						}),
+						
+						new Ext.Button({
+							id : 'test2',
+							text : '人力资源档案查询',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						}),
+						
+						new Ext.Button({
+							id : 'test3',
+							text : '人力资源档案变更',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						}),
+						
+						new Ext.Button({
+							id : 'test4',
+							text : '人力资源档案删除管理',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						})
+
+						]
+		});
+
+		var item3 = new Ext.Panel( {
+			title : '薪酬标准管理',
+			//html : '&lt;empty panel&gt;',
+			cls : 'empty',
+			items : [ 
+						new Ext.Button({
+							id : 'Category-list',
+							text : '薪酬标准登记',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						}),
+
+						new Ext.Button({
+							id : 'test1',
+							text : '薪酬标准登记复核',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						}),
+						
+						new Ext.Button({
+							id : 'test2',
+							text : '薪酬标准查询',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						}),
+						
+						new Ext.Button({
+							id : 'test3',
+							text : '薪酬标准变更',
+							width : '100%',
+							listeners : {
+								click : addPanel
+							}
+
+						})]
+		});
+
+		var item4 = new Ext.Panel( {
+			title : '招聘管理',
+			cls : 'empty',
+			items : [
+					new Ext.Panel( {
+					title : '职位发布管理',
+					//html : '&lt;empty panel&gt;',
+					cls : 'empty',
+					items : [ 
+								new Ext.Button({
+									id : 'Category-list',
+									text : '职位发布登记',
+									width : '100%',
+									listeners : {
+										click : addPanel
+									}
+
+								}),
+								new Ext.Button({
+									id : 'Category-list1',
+									text : '职位发布变更',
+									width : '100%',
+									listeners : {
+										click : addPanel
+									}
+
+								}),
+								new Ext.Button({
+									id : 'Category-list2',
+									text : '职位发布查询',
+									width : '100%',
+									listeners : {
+										click : addPanel
+									}
+
+								})
+							]
+					}),
+					new Ext.Panel( {
+						title : '简历管理',
+						//html : '&lt;empty panel&gt;',
+						cls : 'empty',
+						items : [ 
+									new Ext.Button({
+										id : 'Category-list1',
+										text : '简历登记',
+										width : '100%',
+										listeners : {
+											click : addPanel
+										}
+									}),
+									new Ext.Button({
+										id : 'Category-list2',
+										text : '简历筛选',
+										width : '100%',
+										listeners : {
+											click : addPanel
+										}
+
+									}),
+									new Ext.Button({
+										id : 'Category-list3',
+										text : '有效简历查询',
+										width : '100%',
+										listeners : {
+											click : addPanel
+										}
+
+									})
+								]
+						}),
+						new Ext.Panel( {
+							title : '面试管理',
+							//html : '&lt;empty panel&gt;',
+							cls : 'empty',
+							items : [ 
+										new Ext.Button({
+											id : 'Category-list1',
+											text : '面试结果登记',
+											width : '100%',
+											listeners : {
+												click : addPanel
+											}
+										}),
+										new Ext.Button({
+											id : 'Category-list2',
+											text : '面试筛选',
+											width : '100%',
+											listeners : {
+												click : addPanel
+											}
+										})
+									]
+							}),
+							new Ext.Panel( {
+								title : '招聘题库管理',
+								//html : '&lt;empty panel&gt;',
+								cls : 'empty',
+								items : [ 
+											new Ext.Button({
+												id : 'Category-list1',
+												text : '试题登记',
+												width : '100%',
+												listeners : {
+													click : addPanel
+												}
+											}),
+											new Ext.Button({
+												id : 'Category-list2',
+												text : '试题查询',
+												width : '100%',
+												listeners : {
+													click : addPanel
+												}
+											}),
+											new Ext.Button({
+												id : 'Category-list3',
+												text : '试题变更',
+												width : '100%',
+												listeners : {
+													click : addPanel
+												}
+											})
+										]
+								}),
+								new Ext.Panel( {
+									title : '录用管理',
+									//html : '&lt;empty panel&gt;',
+									cls : 'empty',
+									items : [ 
+												new Ext.Button({
+													id : 'Category-list1',
+													text : '录用申请',
+													width : '100%',
+													listeners : {
+														click : addPanel
+													}
+												}),
+												new Ext.Button({
+													id : 'Category-list2',
+													text : '录用审批',
+													width : '100%',
+													listeners : {
+														click : addPanel
+													}
+												}),
+												new Ext.Button({
+													id : 'Category-list3',
+													text : '录用查询',
+													width : '100%',
+													listeners : {
+														click : addPanel
+													}
+												})
+											]
+									})
+			         ]
+			
+		});
+
+		
+
+		var accordion = new Ext.Panel( {
+			region : 'west',
+			margins : '5 0 5 5',
+			split : true,
+			width : 210,
+			layout : 'accordion',
+			items : [ item1, item2, item3, item4 ]
+		});
+
+		var tabPanel = new Ext.TabPanel( {
+			region : 'center',
+			enableTabScroll : true,
+			deferredRender : false,
+			activeTab : 0,
+			items : [ {
+
+				title : 'index',
+				//html : '欢迎来到人力资源信息管理系统后台管理'
+				autoLoad : 'admin.html'
+			} ]
+		});
+
+		var viewport = new Ext.Viewport( {
+			layout : 'border',
+			items : [ accordion, tabPanel ]
+		});
+
+	});
+</script>
+	</head>
+	<body>
+		
+		<!-- EXAMPLES -->
+	</body>
+</html>
